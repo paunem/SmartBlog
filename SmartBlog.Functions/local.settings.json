@@ -1,0 +1,16 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "CosmosDb:Account": "",
+    "CosmosDb:Key": "",
+    "CosmosDb:DatabaseName": "",
+    "ConnectionStrings:BlobConnectionString": "UseDevelopmentStorage=true",
+    "OpenAI:Url": "https://api.openai.com/v1/",
+    "OpenAI:Key": "",
+    "Script:Url": "https://smartblogscripts.azurewebsites.net/api/AnswerQuestion?code=hzCjx2CyMeTCg8SxO2ZJC12SLylisRLNH_-V-E3tqBraAzFuWfBwdQ==",
+    "PostSchedule": "0 0 19 * * *",
+    "AzureWebJobs.GeneratePost.Disabled": false
+  }
+}
