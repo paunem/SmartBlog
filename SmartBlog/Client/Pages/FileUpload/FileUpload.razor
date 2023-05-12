@@ -1,0 +1,24 @@
+﻿@inherits FileUploadModel
+
+<div class="image-upload-cont">
+    <div class="image-controls">
+        <div class="file-drop-zone @HoverClass" @ondragenter="OnDragEnter" @ondragleave="OnDragLeave" @ondragover="OnDragEnter">
+            <label class="image-drop-cont">
+                <InputFile class="input-file" OnChange="@OnChange" />
+                Upload
+            </label>
+        </div>
+        @if (Configuration.GetValue<bool>(Constants.ImageGen))
+        {
+            <button class="generate-image button-custom actions" @onclick="@GenerateImage">Generate</button>
+        }
+        @if (ShowTitleEmpty)
+        {
+            <div class="login-failed alert alert-danger">Please enter a title.</div>
+        }
+    </div>
+
+    <div class="image-container">
+        <img class="uploaded-image" src="@(ImageSource ??= "img/home-bg.jpg")" />
+    </div>
+</div>

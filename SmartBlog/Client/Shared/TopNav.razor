@@ -1,0 +1,33 @@
+﻿@inherits TopNavModel
+
+<nav class="top-nav">
+    <div class="nav-container">
+        <div class="logo">
+            <a class="logo-link" href="/">@Configuration[Constants.BlogName]</a>
+        </div>
+        <div class="main-links">
+            <ul class="link-list">
+                <li class="navigation-link">
+                    <a href="/">Home</a>
+                </li>
+                <AuthorizeView Roles=@Constants.Owner>
+                    <Authorized>
+                        <li class="navigation-link">
+                            <a href="/addpost">Create</a>
+                        </li>
+                    </Authorized>
+                </AuthorizeView>
+                <li class="navigation-link">
+                    <AuthorizeView>
+                        <Authorized>
+                            <a href="/" @onclick="ExecuteLogout">Logout</a>
+                        </Authorized>
+                        <NotAuthorized>
+                            <a href="/login">Login</a>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

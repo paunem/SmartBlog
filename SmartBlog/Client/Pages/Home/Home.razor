@@ -1,0 +1,18 @@
+﻿@page "/"
+@layout MainLayout
+@inherits HomeModel
+
+<div class="post-container">
+    <div class="posts">
+        @foreach (var post in VisiblePosts.Select((Value, Index) => (Value, Index)))
+        {
+            var alignRight = post.Index % 2 != 0;
+            <BlogPostPreview Post=@post.Value AlignRight=@alignRight></BlogPostPreview>
+        }
+    </div>
+    <button class="load-more-btn button-custom actions" @onclick="@LoadMore">Load more</button>
+</div>
+
+@code {
+
+}

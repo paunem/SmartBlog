@@ -1,0 +1,72 @@
+﻿@page "/addpost"
+@page "/editpost/{PostId}"
+@layout MainLayout
+@inherits AddPostModel
+@attribute [Authorize(Roles = Constants.Owner)]
+
+<div class="add-post-container">
+    <div class="add-image add-line">
+        <div class="add-image-name add-label-column">
+            <p class="add-label">Image:</p>
+        </div>
+        <FileUpload ImageSource=@Post.ImageUrl Title=@Post.Title @ref="FileUploadRef" />
+    </div>
+    <div class="add-title add-line">
+        <div class="add-title-name add-label-column">
+            <p class="add-label">Title:</p>
+        </div>
+        <div class="add-title-value add-input-area">
+            <input @bind=@Post.Title placeholder="Enter a title" class="add-input" />
+        </div>
+    </div>
+    <div class="add-summary add-line">
+        <div class="add-content-name add-label-column">
+            <p class="add-label">Summary:</p>
+        </div>
+        <div class="summarize-cont">
+            <div class="add-summary-value add-input-area">
+                <textarea @bind=@Post.Summary placeholder="Write a summary for preview" rows="3" class="add-input"></textarea>
+            </div>
+            @if (Configuration.GetValue<bool>(Constants.Summarazation))
+            {
+                <div class="summarize-button-cont">
+                    <button class="button-custom actions" @onclick="@Summarize">Summarize</button>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="add-content add-line">
+        <div class="add-content-name add-label-column">
+            <p class="add-label">Your story:</p>
+        </div>
+        <div class="add-content-value add-input-area">
+            <textarea @bind=@Post.Content placeholder="Write your story" rows="20" class="add-input"></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        @if (IsEdit)
+        {
+            <NavLink class="back-btn actions" href="@{$"/post/{Post.Id}"}">Back</NavLink>
+            <button class="button-custom actions" @onclick="@DeletePost">Delete</button>
+            <button class="button-custom actions" @onclick="@UpdatePost">Save</button>
+        }
+        else
+        {
+            <NavLink class="back-btn actions" href="/">Back</NavLink>
+            @if (Configuration.GetValue<bool>(Constants.TextGen))
+            {
+                <button class="button-custom actions" @onclick="@GenerateStory">Generate</button>
+            }
+            <button class="button-custom actions" @onclick="@SavePost">Post</button>
+        }
+    </div>
+    @if (ShowValidationError)
+    {
+        <div class="login-failed alert alert-danger">Please fill all fields and upload an image</div>
+    }
+    
+</div>
+
+@code {
+
+}

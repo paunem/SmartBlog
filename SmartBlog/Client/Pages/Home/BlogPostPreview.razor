@@ -1,0 +1,22 @@
+@inherits BlogPostPreviewModel
+
+<div class="@(AlignRight ? "post align-right" : "post")">
+    <NavLink class="post-preview-box" href="@($"post/{Post.Id}")">
+        <div class="post-img-cont">
+            <img class="post-img" src="@(Post.ImageUrl ??= "img/home-bg.jpg")" />
+        </div>
+
+        <div class="post-preview">
+            <h2 class="post-title">@Post.Title</h2>
+            @if (!string.IsNullOrEmpty(Post.Summary))
+            {
+                <p class="post-sub">@Post.Summary</p>
+            }
+            else
+            {
+                <p class="post-sub">@Post.Content.Substring(0, Post.Content.IndexOf("\n"))</p>
+            }
+            <p class="post-meta">@Post.Author on @Post.PostedOn.LocalDateTime.ToString("yyyy-MM-dd HH:mm")</p>
+        </div>
+    </NavLink>
+</div>

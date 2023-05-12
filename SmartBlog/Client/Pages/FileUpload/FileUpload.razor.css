@@ -1,0 +1,54 @@
+﻿.file-drop-zone {
+    border-radius: 25px;
+    background-color: #40414f;
+    overflow: hidden;
+    font-size: larger;
+    padding: 0.4rem 1rem;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.file-drop-zone:hover {
+    background-color: #484959;
+    transition: background-color 100ms linear;
+}
+
+.image-upload-cont {
+    display: flex;
+    width: 85%;
+    align-items: center;
+}
+
+.image-container {
+    width: 80%;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-left: auto;
+}
+
+.uploaded-image {
+    max-width: 100%;
+}
+
+.hover {
+    background-color: #484959;
+    transition: background-color 100ms linear;
+}
+
+.image-drop-cont {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+::deep .input-file {
+    display: none;
+}
+
+.image-controls {
+    width: 15%
+}
+
+.generate-image {
+    margin: 0 0 1rem 0;
+}

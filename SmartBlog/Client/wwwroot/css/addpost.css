@@ -1,0 +1,106 @@
+﻿.add-line {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.add-label-column {
+    width: 15%;
+    padding-right: 1rem;
+    float: right;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.add-label {
+    margin: 0;
+    float: right;
+}
+
+.add-input-area {
+    border-radius: 25px;
+    background-color: #40414f;
+    padding: 0.6rem 1rem;
+    width: 85%;
+}
+
+.add-input {
+    white-space: pre-wrap;
+    all: unset;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap;
+}
+
+textarea::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+.button-custom {
+    color: #ececf1;
+    border: none;
+    margin-left: 0.6rem
+}
+
+.actions:hover {
+    background-color: #484959;
+    text-decoration: none;
+    transition: background-color 100ms linear;
+}
+
+.actions {
+    border-radius: 25px;
+    background-color: #40414f;
+    font-size: larger;
+    padding: 0.4rem 1rem;
+    margin-left: 0.6rem;
+}
+
+.back-btn {
+    float: left;
+    margin-right: auto;
+    margin-left: 15%;
+}
+
+.login-container {
+    margin: 0 30%;
+}
+
+.login-button {
+    margin-left: auto;
+}
+
+.login-failed {
+    width: fit-content;
+    border-radius: 25px;
+    padding: 0.4rem 1rem;
+    color: #842029;
+    background-color: #f8d7da;
+    margin-top: 1rem;
+}
+
+.summarize-cont {
+    display: flex;
+    width: 85%;
+    align-items: center;
+}
+
+.summarize-button-cont {
+    width: 15%;
+    margin-left: auto;
+}
+
+.add-summary-value {
+    width: 100% !important;
+}

@@ -1,0 +1,38 @@
+﻿@inherits CommentsModel
+
+<h2 class="comments-title">Comments</h2>
+<AuthorizeView>
+    <Authorized>
+        <div class="comment-top-cont">
+            <div class="comment-input-container">
+                <textarea @bind=@NewComment placeholder="Write a comment" rows="2" class="comment-input"></textarea>
+            </div>
+            <div class="save-comment-container">
+                @if (Configuration.GetValue<bool>(Constants.Moderation))
+                {
+                    <button class="button-custom actions" @onclick="@ModerateComment">Post</button>
+                }
+                else
+                {
+                    <button class="button-custom actions" @onclick="@SaveComment">Post</button>
+                }
+            </div>
+        </div>
+        <div class="comment-input-error">
+            @if (IsFlagged)
+            {
+                <div class="comment-failed alert alert-danger">Comment violates good conduct</div>
+            }
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+<div class="comments-container">
+    @foreach (var comment in Comments)
+    {
+        <div class="comment">
+            <div class="comment-header">@comment.Author @comment.PostedOn.LocalDateTime.ToString("yyyy-MM-dd HH:mm")</div>
+            <div class="comment-content">@comment.Content</div>
+        </div>
+    }
+</div>

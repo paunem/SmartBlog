@@ -1,0 +1,47 @@
+@page "/post/{PostId}"
+@layout MainLayout
+@inherits ViewPostModel
+
+<div class="view-post">
+    <div class="view-post-img" style="background-image: url('@(Post.ImageUrl ??= "img/home-bg.jpg")')"></div>
+
+    <div class="view-post-header">
+        <h2 class="post-title">
+                @Post.Title
+        </h2>
+        
+        <p class="post-meta">Posted by @Post.Author on @Post.PostedOn.LocalDateTime.ToString("yyyy-MM-dd HH:mm")</p>
+    </div>
+
+    <article>
+        <div class="post-content">     
+            <div class="col-md-12 story">
+                @(Post.Content)
+            </div>
+        </div>
+    </article>
+</div>
+
+<div class="edit-link-cont">
+    @if (Configuration.GetValue<bool>(Constants.Translate))
+    {
+        <button class="button-custom actions" @onclick="@TranslatePost">Translate</button>
+    }
+    <AuthorizeView Roles=@Constants.Owner>
+        <Authorized>
+            <NavLink class="actions" href="@($"/editpost/{Post.Id}")">Edit</NavLink>
+        </Authorized>
+    </AuthorizeView>
+</div>
+
+<Comments PostId=@PostId></Comments>
+
+@code{
+    //@foreach (var claim in context.User.Claims)
+    //    {
+    //<tr>
+    //    <td>@claim.Type</td>
+    //    <td>@claim.Value</td>
+    //</tr>
+    //    }
+}

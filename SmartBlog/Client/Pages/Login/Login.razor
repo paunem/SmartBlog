@@ -1,0 +1,37 @@
+﻿@page "/login"
+@inherits LoginModel
+
+<div class="login-container">
+   
+    <div class="add-title add-line">
+        <div class="add-title-name add-label-column">
+            <p class="add-label">Username:</p>
+        </div>
+        <div class="add-title-value add-input-area">
+            <input @bind=@UserDetails.Email placeholder="Your username" class="add-input" />
+        </div>
+    </div>
+    <div class="add-title add-line">
+        <div class="add-title-name add-label-column">
+            <p class="add-label">Password:</p>
+        </div>
+        <div class="add-title-value add-input-area">
+            <input type="password" @bind=@UserDetails.Password placeholder="Your password" class="add-input" />
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="button-custom actions login-button" @onclick="@ExecuteLogin">Login</button>
+        <button class="button-custom actions register-button" @onclick="@ExecuteRegister">Register</button>
+    </div>
+    @if (ShowLoginFailed)
+    {
+        <div class="login-failed">Login attempt failed.</div>
+    }
+    @if (ShowRegisterFailed)
+    {
+        @foreach (var error in RegisterErrors)
+        {
+            <div class="login-failed">@error</div>
+        }
+    }
+</div>
