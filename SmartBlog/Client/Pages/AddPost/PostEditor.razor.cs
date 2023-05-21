@@ -110,4 +110,18 @@ public class AddPostModel : ComponentBase
 
         Post.Summary = summary;
     }
+
+    public async Task Rephrase()
+    {
+        var content = await PostService.Rephrase(Post);
+
+        Post.Content = content;
+    }
+
+    public async Task FixMistakes()
+    {
+        var content = await PostService.FixMistakes(Post);
+
+        Post.Content = content;
+    }
 }

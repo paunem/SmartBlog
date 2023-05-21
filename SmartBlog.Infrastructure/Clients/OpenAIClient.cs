@@ -16,27 +16,6 @@ public class OpenAIClient : IOpenAIClient
         client = httpClientFactory.CreateClient("openAI");
     }
 
-    //public async Task<TitleStory> GenerateText()
-    //{
-    //    var requestData = new OpenAIRequest
-    //    {
-    //        Model = "text-davinci-003",
-    //        Prompt = Constants.CreateTitleStory,
-    //        MaxTokens = 500
-    //    };
-
-    //    var response = await client.PostAsJsonAsync("completions", requestData);
-
-    //    var content = await response.Content.ReadAsStringAsync();
-
-    //    var jsonDoc = JsonDocument.Parse(content);
-    //    var generatedResponse = jsonDoc.RootElement.GetProperty("choices")[0].GetProperty("text").ToString().TrimStart().TrimEnd();
-
-    //    var titleAndStory = ExtractTitleAndStory(generatedResponse);
-
-    //    return titleAndStory;
-    //}
-
     public async Task<GeneratedStory> GenerateText()
     {
         var requestData = new OpenAIRequest
@@ -95,6 +74,7 @@ public class OpenAIClient : IOpenAIClient
         var content = await response.Content.ReadAsStringAsync();
 
         var jsonDoc = JsonDocument.Parse(content);
+
         return jsonDoc.RootElement.GetProperty("results")[0].GetProperty("flagged").GetBoolean();
     }
 
@@ -119,6 +99,7 @@ public class OpenAIClient : IOpenAIClient
         var contentString = await response.Content.ReadAsStringAsync();
 
         var jsonDoc = JsonDocument.Parse(contentString);
+
         return jsonDoc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").ToString().TrimStart().TrimEnd();
     }
 
@@ -143,6 +124,57 @@ public class OpenAIClient : IOpenAIClient
         var contentString = await response.Content.ReadAsStringAsync();
 
         var jsonDoc = JsonDocument.Parse(contentString);
+
+        return jsonDoc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").ToString().TrimStart().TrimEnd();
+    }
+
+    public async Task<string> Rephrase(string content)
+    {
+        var requestData = new OpenAIRequest
+        {
+            Model = "gpt-3.5-turbo",
+            Messages = new List<ChatMessage>
+            {
+                new ChatMessage
+                {
+                    Role = "user",
+                    Content = Constants.Rephrase + content
+                }
+            },
+            MaxTokens = 1000
+        };
+
+        var response = await client.PostAsJsonAsync("chat/completions", requestData);
+
+        var contentString = await response.Content.ReadAsStringAsync();
+
+        var jsonDoc = JsonDocument.Parse(contentString);
+
+        return jsonDoc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").ToString().TrimStart().TrimEnd();
+    }
+
+    public async Task<string> Edit(string content)
+    {
+        var requestData = new OpenAIRequest
+        {
+            Model = "gpt-3.5-turbo",
+            Messages = new List<ChatMessage>
+            {
+                new ChatMessage
+                {
+                    Role = "user",
+                    Content = Constants.Edit + content
+                }
+            },
+            MaxTokens = 1000
+        };
+
+        var response = await client.PostAsJsonAsync("chat/completions", requestData);
+
+        var contentString = await response.Content.ReadAsStringAsync();
+
+        var jsonDoc = JsonDocument.Parse(contentString);
+
         return jsonDoc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").ToString().TrimStart().TrimEnd();
     }
 

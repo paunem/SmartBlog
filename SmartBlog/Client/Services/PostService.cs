@@ -133,4 +133,24 @@ public class PostService : IPostService
 
         return content;
     }
+
+    public async Task<string> Rephrase(Post post)
+    {
+        var response = await clientAuth.PostAsJsonAsync($"api/Helper/Rephrase", post.Content);
+
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+
+        return content;
+    }
+
+    public async Task<string> FixMistakes(Post post)
+    {
+        var response = await clientAuth.PostAsJsonAsync($"api/Helper/Edit", post.Content);
+
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+
+        return content;
+    }
 }

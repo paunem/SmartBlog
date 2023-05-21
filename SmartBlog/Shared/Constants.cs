@@ -21,4 +21,8 @@ public static class Constants
     public const string Translate = "Translate";
 
     public const string BlogName = "BlogName";
+
+    public const string Rephrase = "Rephrase";
+
+    public const string Edit = "Edit";
 }

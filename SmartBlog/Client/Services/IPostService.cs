@@ -32,4 +32,8 @@ public interface IPostService
     Task<string> Translate(Post post);
 
     Task<string> Summarize(Post post);
+
+    Task<string> Rephrase(Post post);
+
+    Task<string> FixMistakes(Post post);
 }

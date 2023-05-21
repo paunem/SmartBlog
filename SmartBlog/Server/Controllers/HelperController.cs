@@ -57,4 +57,20 @@ public class HelperController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpPost("Rephrase")]
+    public async Task<IActionResult> Rephrase([FromBody] string content)
+    {
+        var result = await openAIClient.Rephrase(content);
+
+        return Ok(result);
+    }
+
+    [HttpPost("Edit")]
+    public async Task<IActionResult> Edit([FromBody] string content)
+    {
+        var result = await openAIClient.Edit(content);
+
+        return Ok(result);
+    }
 }

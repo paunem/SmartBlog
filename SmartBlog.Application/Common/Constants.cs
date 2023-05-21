@@ -11,4 +11,8 @@ public static class Constants
     public const string Translate = "Translate this text to lithuanian:\n";
 
     public const string Summarize = "Summarize this text under 300 characters:\n";
+
+    public const string Rephrase = "Rephrase this text:\n";
+
+    public const string Edit = "Fix spelling and grammar of this text:\n";
 }

@@ -48,6 +48,14 @@
         {
             <NavLink class="back-btn actions" href="@{$"/post/{Post.Id}"}">Back</NavLink>
             <button class="button-custom actions" @onclick="@DeletePost">Delete</button>
+            @if (Configuration.GetValue<bool>(Constants.Rephrase))
+            {
+                <button class="button-custom actions" @onclick="@Rephrase">Rephrase</button>
+            }
+            @if (Configuration.GetValue<bool>(Constants.Edit))
+            {
+                <button class="button-custom actions" @onclick="@FixMistakes">Fix mistakes</button>
+            }
             <button class="button-custom actions" @onclick="@UpdatePost">Save</button>
         }
         else
@@ -56,6 +64,14 @@
             @if (Configuration.GetValue<bool>(Constants.TextGen))
             {
                 <button class="button-custom actions" @onclick="@GenerateStory">Generate</button>
+            }
+            @if (Configuration.GetValue<bool>(Constants.Rephrase))
+            {
+                        <button class="button-custom actions" @onclick="@Rephrase">Rephrase</button>
+            }
+            @if (Configuration.GetValue<bool>(Constants.Edit))
+            {
+                        <button class="button-custom actions" @onclick="@FixMistakes">Fix mistakes</button>
             }
             <button class="button-custom actions" @onclick="@SavePost">Post</button>
         }
